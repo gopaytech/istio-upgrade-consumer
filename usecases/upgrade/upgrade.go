@@ -3,7 +3,6 @@ package upgrade
 import (
 	"context"
 	"log"
-	"strings"
 	"time"
 
 	"github.com/gopaytech/istio-upgrade-consumer/services/storage"
@@ -47,10 +46,8 @@ func (u *UpgradeImplementation) Provision(upgrade types.Upgrade) error {
 }
 
 func (u *UpgradeImplementation) IdentifyEnvironment() Environment {
-	for _, identifier := range u.Settings.ClusterProductionIdentifier {
-		if strings.Contains(u.Settings.ClusterName, identifier) {
-			return ProductionEnv
-		}
+	if u.Settings.ClusterEnvironment == "production" {
+		return ProductionEnv
 	}
 
 	return NonProductionEnv
