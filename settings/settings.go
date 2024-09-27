@@ -10,7 +10,8 @@ type Settings struct {
 	ClusterName        string `required:"true" envconfig:"CLUSTER_NAME"`
 	ClusterEnvironment string `required:"true" envconfig:"CLUSTER_ENVIRONMENT default:"production"`
 
-	ReceiverMode                  string `required:"true" envconfig:"RECEIVER_MODE" default:"pubsub"`
+	ReceiverMode                  string `required:"true" envconfig:"RECEIVER_MODE" default:"http"`
+	ReceiverHTTPPort              int    `envconfig:"RECEIVER_HTTP_PORT"`
 	ReceiverPubSubGoogleProjectID string `envconfig:"RECEIVER_PUBSUB_GOOGLE_PROJECT_ID"`
 	ReceiverPubSubSubscriptionID  string `envconfig:"RECEIVER_PUBSUB_SUBSCRIBTION_ID"`
 

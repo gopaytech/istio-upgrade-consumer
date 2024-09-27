@@ -12,8 +12,8 @@ import (
 
 func NewUpgradePubSub(settings settings.Settings, upgradeStorage storage.UpgradeInterface, upgradeImplementation upgrade.UpgradeImplementation) UpgradePubSub {
 	return UpgradePubSub{
-		UpgradeStorage: upgradeStorage,
-		Settings:       settings,
+		UpgradeStorage:        upgradeStorage,
+		Settings:              settings,
 		UpgradeImplementation: upgradeImplementation,
 	}
 }
