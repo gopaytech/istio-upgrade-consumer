@@ -7,7 +7,7 @@ import (
 	cloudevents "github.com/cloudevents/sdk-go/v2"
 	"github.com/gopaytech/istio-upgrade-consumer/types"
 	"github.com/gopaytech/istio-upgrade-consumer/usecases/upgrade"
-	"github.com/gopaytech/istio-upgrade-proto/model"
+	model "github.com/gopaytech/istio-upgrade-proto/upgrade"
 )
 
 func NewUpgradeHandler(upgradeImplementation upgrade.UpgradeImplementation) *UpgradeHandler {
