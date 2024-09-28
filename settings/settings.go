@@ -19,8 +19,8 @@ type Settings struct {
 	StorageConfigMapName      string `envconfig:"STORAGE_CONFIGMAP_NAME" default:"istio-upgrade"`
 	StorageConfigMapNameSpace string `envconfig:"STORAGE_CONFIGMAP_NAMESPACE" default:"istio-system"`
 
-	ProductionWaitingWeek    int `required:"true" envconfig:"PRODUCTION_WAITING_WEEK" default:"4"`
-	NonProductionWaitingWeek int `required:"true" envconfig:"NON_PRODUCTION_WAITING_WEEK" default:"1"`
+	ProductionWaitingDay    int `required:"true" envconfig:"PRODUCTION_WAITING_DAY" default:"28"`
+	NonProductionWaitingDay int `required:"true" envconfig:"NON_PRODUCTION_WAITING_DAY" default:"7"`
 
 	TimeLocation string `required:"true" envconfig:"TIME_LOCATION" default:"Asia/Jakarta"`
 	TimeFormat   string `required:"true" envconfig:"TIME_FORMAT" default:"2006-01-02"`

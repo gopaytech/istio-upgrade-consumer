@@ -19,8 +19,8 @@ helm install my-istio-upgrade-consumer istio-upgrade-consumer/istio-upgrade-cons
 |-----|------|---------|-------------|
 | configuration.clusterEnvironment | string | `"production"` |  |
 | configuration.clusterName | string | `"my-cluster"` |  |
-| configuration.nonProductionWaitingWeek | string | `"1"` |  |
-| configuration.productionWaitingWeek | string | `"4"` |  |
+| configuration.nonProductionWaitingDay | string | `"7"` |  |
+| configuration.productionWaitingDay | string | `"28"` |  |
 | configuration.receiverHTTPPort | string | `"8080"` |  |
 | configuration.receiverMode | string | `"http"` |  |
 | configuration.storageConfigMapName | string | `"istio-auto-upgrade-config"` |  |

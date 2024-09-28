@@ -65,9 +65,9 @@ func (u *UpgradeImplementation) CalculateRolloutRestartDate(environment Environm
 	}
 
 	if environment == ProductionEnv {
-		return now.AddDate(0, 0, 7*u.Settings.ProductionWaitingWeek)
+		return now.AddDate(0, 0, u.Settings.ProductionWaitingDay)
 	}
-	return now.AddDate(0, 0, 7*u.Settings.NonProductionWaitingWeek)
+	return now.AddDate(0, 0, u.Settings.NonProductionWaitingDay)
 }
 
 func NewUpgradeImplementation(settings settings.Settings, upgradeStorage storage.UpgradeInterface) UpgradeImplementation {
