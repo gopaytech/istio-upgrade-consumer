@@ -40,7 +40,7 @@ func (s UpgradeHTTP) Start() error {
 	}
 
 	handler := NewUpgradeHandler(s.UpgradeImplementation)
-	err = cloudEventClient.StartReceiver(ctx, handler)
+	err = cloudEventClient.StartReceiver(ctx, handler.Handle)
 	if err != nil {
 		return err
 	}
