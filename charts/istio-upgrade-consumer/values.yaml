@@ -24,7 +24,7 @@ configuration:
   receiverHTTPPort: "8080"
   storageMode: "configmap"
   storageConfigMapName: "istio-auto-upgrade-config"
-  storageConfigMapNameSpace: "istio-system"
+  storageConfigMapNamespace: "istio-system"
   productionWaitingWeek: "4"
   nonProductionWaitingWeek: "1"
   timeLocation: "Asia/Jakarta"
