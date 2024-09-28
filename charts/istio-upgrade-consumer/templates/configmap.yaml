@@ -10,7 +10,7 @@ metadata:
 data:
   CLUSTER_NAME: "{{ .Values.configuration.clusterName }}"
   CLUSTER_ENVIRONMENT: "{{ .Values.configuration.clusterEnvironment }}"
-  RECEIVER_MODE: "{{ .Values.configuration.receiverMode }} "
+  RECEIVER_MODE: "{{ .Values.configuration.receiverMode }}"
   RECEIVER_HTTP_PORT: "{{ .Values.configuration.receiverHTTPPort }}"
   STORAGE_MODE: "{{ .Values.configuration.storageMode }}"
   STORAGE_CONFIGMAP_NAME: "{{ .Values.configuration.storageConfigMapName }}"

@@ -18,5 +18,5 @@ func UpgradeFactory(settings settings.Settings) (UpgradeInterface, error) {
 		return configmap.NewUpgradeConfigMap(kubernetesConfig, settings), nil
 	}
 
-	return nil, fmt.Errorf("receiver is not supported")
+	return nil, fmt.Errorf("storage is not supported %s", settings.StorageMode)
 }

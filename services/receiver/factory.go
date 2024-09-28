@@ -19,5 +19,5 @@ func UpgradeFactory(settings settings.Settings, upgradeStorage storage.UpgradeIn
 		return http.NewUpgradeHTTP(settings, upgradeStorage, upgradeImplementation), nil
 	}
 
-	return nil, fmt.Errorf("receiver is not supported")
+	return nil, fmt.Errorf("receiver is not supported: %s", settings.ReceiverMode)
 }
