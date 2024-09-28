@@ -4,6 +4,9 @@ go 1.22
 
 require (
 	cloud.google.com/go/pubsub v1.36.1
+	github.com/cloudevents/sdk-go/binding/format/protobuf/v2 v2.15.2
+	github.com/cloudevents/sdk-go/v2 v2.15.2
+	github.com/gopaytech/istio-upgrade-proto v0.0.0-20240927145206-062e52f24a6f
 	github.com/kelseyhightower/envconfig v1.4.0
 	k8s.io/api v0.29.2
 	k8s.io/apimachinery v0.29.2
@@ -15,8 +18,6 @@ require (
 	cloud.google.com/go/compute v1.23.3 // indirect
 	cloud.google.com/go/compute/metadata v0.2.3 // indirect
 	cloud.google.com/go/iam v1.1.5 // indirect
-	github.com/cloudevents/sdk-go/binding/format/protobuf/v2 v2.15.2 // indirect
-	github.com/cloudevents/sdk-go/v2 v2.15.2 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/emicklei/go-restful/v3 v3.11.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
@@ -34,7 +35,6 @@ require (
 	github.com/google/uuid v1.5.0 // indirect
 	github.com/googleapis/enterprise-certificate-proxy v0.3.2 // indirect
 	github.com/googleapis/gax-go/v2 v2.12.0 // indirect
-	github.com/gopaytech/istio-upgrade-proto v0.0.0-20240927145206-062e52f24a6f // indirect
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
