@@ -8,14 +8,14 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 data:
-  CLUSTER_NAME: {{ .Values.configuration.clusterName }}
-  CLUSTER_ENVIRONMENT: {{ .Values.configuration.clusterEnvironment }}
-  RECEIVER_MODE: {{ .Values.configuration.receiverMode }} 
-  RECEIVER_HTTP_PORT: {{ .Values.configuration.receiverHTTPPort }}
-  STORAGE_MODE: {{ .Values.configuration.storageMode }}
-  STORAGE_CONFIGMAP_NAME: {{ .Values.configuration.storageConfigMapName }}
-  STORAGE_CONFIGMAP_NAMESPACE: {{ .Values.configuration.storageConfigMapNamespace }}
-  PRODUCTION_WAITING_WEEK: {{ .Values.configuration.productionWaitingWeek }}
-  NON_PRODUCTION_WAITING_WEEK: {{ .Values.configuration.nonProductionWaitingWeek }}
-  TIME_LOCATION: {{ .Values.configuration.timeLocation }}
-  TIME_FORMAT: {{ .Values.configuration.timeFormat }}
+  CLUSTER_NAME: "{{ .Values.configuration.clusterName }}"
+  CLUSTER_ENVIRONMENT: "{{ .Values.configuration.clusterEnvironment }}"
+  RECEIVER_MODE: "{{ .Values.configuration.receiverMode }} "
+  RECEIVER_HTTP_PORT: "{{ .Values.configuration.receiverHTTPPort }}"
+  STORAGE_MODE: "{{ .Values.configuration.storageMode }}"
+  STORAGE_CONFIGMAP_NAME: "{{ .Values.configuration.storageConfigMapName }}"
+  STORAGE_CONFIGMAP_NAMESPACE: "{{ .Values.configuration.storageConfigMapNamespace }}"
+  PRODUCTION_WAITING_WEEK: "{{ .Values.configuration.productionWaitingWeek }}"
+  NON_PRODUCTION_WAITING_WEEK: "{{ .Values.configuration.nonProductionWaitingWeek }}"
+  TIME_LOCATION: "{{ .Values.configuration.timeLocation }}"
+  TIME_FORMAT: "{{ .Values.configuration.timeFormat }}"
