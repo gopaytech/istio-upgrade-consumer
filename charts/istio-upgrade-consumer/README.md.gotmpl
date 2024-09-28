@@ -1,0 +1,19 @@
+{{ template "chart.header" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}[![made with Go](https://img.shields.io/badge/made%20with-Go-brightgreen)](http://golang.org) [![Github main branch build](https://img.shields.io/github/workflow/status/gopaytech/istio-upgrade-consumer/Main)](https://github.com/gopaytech/istio-upgrade-consumer/actions/workflows/main.yml) [![GitHub issues](https://img.shields.io/github/issues/gopaytech/istio-upgrade-consumer)](https://github.com/gopaytech/istio-upgrade-consumer/issues) [![GitHub pull requests](https://img.shields.io/github/issues-pr/gopaytech/istio-upgrade-consumer)](https://github.com/gopaytech/istio-upgrade-consumer/pulls)[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/istio-upgrade-consumer)](https://artifacthub.io/packages/search?repo=istio-upgrade-consumer)
+
+## Installing
+
+To install the chart with the release name `my-release`:
+
+```console
+helm repo add istio-upgrade-consumer https://github.com/gopaytech/istio-upgrade-consumer/charts/releases/
+helm install my-istio-upgrade-consumer istio-upgrade-consumer/istio-upgrade-consumer --values values.yaml
+```
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
+
+{{ template "helm-docs.versionFooter" . }}

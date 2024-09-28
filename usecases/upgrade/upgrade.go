@@ -27,7 +27,7 @@ func (u *UpgradeImplementation) Provision(upgrade types.Upgrade) error {
 		environment := u.IdentifyEnvironment()
 		rolloutRestartDate := u.CalculateRolloutRestartDate(environment)
 
-		upgrade.Iteration = 0
+		upgrade.Iteration = 1
 		upgrade.RolloutRestartDate = rolloutRestartDate.Format(u.Settings.TimeFormat)
 
 		upgradeExisting, err := u.UpgradeStorage.Get(context.Background())

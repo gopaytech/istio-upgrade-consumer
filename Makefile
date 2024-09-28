@@ -59,3 +59,13 @@ image.release:
 .PHONY: build.binaries
 build.binaries:
 	CGO_ENABLED=0 GO111MODULE=on go build -a -ldflags '${LDFLAGS}' -o ${BIN_DIR}/istio-upgrade-consumer ./main.go
+
+.PHONY: readme
+readme:
+	helm-docs -c ./charts/istio-upgrade-consumer -d > README.md
+	helm-docs -c ./charts/istio-upgrade-consumer
+
+.PHONY: helm.create.releases
+helm.create.releases:
+	helm package charts/istio-upgrade-consumer --destination charts/releases
+	helm repo index charts/releases

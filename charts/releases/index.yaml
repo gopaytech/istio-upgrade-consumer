@@ -1,0 +1,20 @@
+apiVersion: v1
+entries:
+  istio-upgrade-consumer:
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-09-28T16:59:51.414585+07:00"
+    description: Consumer for Istio Upgrade tooling to receive events related to Istio
+      upgrade
+    digest: 7570a2859ac7c42fd35d254f291286d6e25b17b547b2b71b4defc28f89516cfd
+    home: https://github.com/gopaytech/istio-upgrade-consumer
+    maintainers:
+    - email: zufardhiyaulhaq@gmail.com
+      name: Zufar Dhiyaulhaq
+      url: https://zufardhiyaulhaq.com
+    name: istio-upgrade-consumer
+    type: application
+    urls:
+    - istio-upgrade-consumer-1.0.0.tgz
+    version: 1.0.0
+generated: "2024-09-28T16:59:51.41394+07:00"

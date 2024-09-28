@@ -1,0 +1,31 @@
+deployment:
+  image: "ghcr.io/gopaytech/istio-upgrade-consumer"
+  tag: "nightly"
+  replicas: 1
+
+resources:
+  limits:
+    cpu: 200m
+    memory: 100Mi
+  requests:
+    cpu: 100m
+    memory: 20Mi
+
+serviceAccount:
+  imagePullSecrets: []
+  automountServiceAccountToken: true
+
+podLabels: {}
+
+configuration:
+  clusterName: "my-cluster"
+  clusterEnvironment: "production"
+  receiverMode: "http"
+  receiverHTTPPort: "8080"
+  storageMode: "configmap"
+  storageConfigMapName: "istio-auto-upgrade-config"
+  storageConfigMapNameSpace: "istio-system"
+  productionWaitingWeek: "4"
+  nonProductionWaitingWeek: "1"
+  timeLocation: "Asia/Jakarta"
+  timeFormat: "2006-01-02"
