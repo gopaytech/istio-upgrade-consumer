@@ -3,10 +3,10 @@ entries:
   istio-upgrade-consumer:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2024-09-29T00:10:34.591044+07:00"
+    created: "2024-10-04T14:52:42.656931+07:00"
     description: Consumer for Istio Upgrade tooling to receive events related to Istio
       upgrade
-    digest: 78764a7ee1b6ae84060bf75e15226677492f70f059db8ec3c2f1b44a0dc5519b
+    digest: 3f79924079765c60836a50e498a7f2de944621e6c4af3d59997e6707288689ee
     home: https://github.com/gopaytech/istio-upgrade-consumer
     maintainers:
     - email: zufardhiyaulhaq@gmail.com
@@ -17,4 +17,4 @@ entries:
     urls:
     - istio-upgrade-consumer-1.0.0.tgz
     version: 1.0.0
-generated: "2024-09-29T00:10:34.590584+07:00"
+generated: "2024-10-04T14:52:42.656308+07:00"
