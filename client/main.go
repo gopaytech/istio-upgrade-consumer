@@ -2,7 +2,9 @@ package main
 
 import (
 	"context"
+	"crypto/tls"
 	"log"
+	"net/http"
 
 	pbcloudevents "github.com/cloudevents/sdk-go/binding/format/protobuf/v2"
 	cloudevents "github.com/cloudevents/sdk-go/v2"
@@ -16,6 +18,13 @@ func main() {
 	p, err := cloudevents.NewHTTP()
 	if err != nil {
 		log.Fatalf("failed to create protocol: %s", err.Error())
+	}
+
+	// Load the certificate
+	p.Client.Transport = &http.Transport{
+		TLSClientConfig: &tls.Config{
+			Certificates: []tls.Certificate{loadCertificate()},
+		},
 	}
 
 	c, err := cloudevents.NewClient(p, cloudevents.WithTimeNow(), cloudevents.WithUUIDs())
@@ -43,4 +52,12 @@ func main() {
 			log.Printf("Send did not return an HTTP response: %s", res)
 		}
 	}
+}
+
+func loadCertificate() tls.Certificate {
+	cert, err := tls.LoadX509KeyPair("path/to/certificate.crt", "path/to/private.key")
+	if err != nil {
+		log.Fatalf("failed to load certificate: %v", err)
+	}
+	return cert
 }
