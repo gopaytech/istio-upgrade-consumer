@@ -1,6 +1,6 @@
 deployment:
   image: "ghcr.io/gopaytech/istio-upgrade-consumer"
-  tag: "v1.0.0"
+  tag: "v1.0.1"
   replicas: 2
 
 resources:

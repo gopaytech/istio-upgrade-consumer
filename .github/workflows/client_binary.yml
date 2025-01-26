@@ -1,0 +1,31 @@
+name: "go: build client binary"
+
+on:
+  push:
+    tags: [ 'v*.*.*' ]
+
+permissions:
+  contents: read
+
+jobs:
+  releases-matrix:
+    name: Release Go Binary
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        goos: [linux, darwin]
+        goarch: [amd64, arm64]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Go Release Binaries Normal Volume Size
+        uses: wangyoucao577/go-release-action@v1.53
+        with:
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        goos: ${{ matrix.goos }}
+        goarch: ${{ matrix.goarch }}
+        goversion: "https://dl.google.com/go/go1.22.2.linux-amd64.tar.gz"
+        project_path: client
+        binary_name: istio-upgrade-consumer-client
+        asset_name: "istio-upgrade-consumer-client-${{ matrix.goos }}-${{ matrix.goarch }}"
