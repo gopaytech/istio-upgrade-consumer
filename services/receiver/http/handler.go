@@ -23,9 +23,19 @@ type UpgradeHandler struct {
 func (h *UpgradeHandler) Handle(ctx context.Context, event cloudevents.Event) {
 	payload := &model.Upgrade{}
 	if err := event.DataAs(payload); err != nil {
-		log.Printf("failed to decode protobuf data: %s", err)
+		log.Printf("failed to decode protobuf data: %s, skipped", err)
 		return
 	}
+
+	eventType := event.Context.GetType()
+	if eventType != "upgrade-event" {
+		log.Printf("received invalid event: %s, skipped", eventType)
+		return
+	}
+	eventSubject := event.Context.GetSubject()
+	eventSource := event.Context.GetSource()
+
+	log.Printf("received event: %s from %s with subject %s", eventType, eventSource, eventSubject)
 
 	upgrade := types.Upgrade{
 		Version:     payload.IstioVersion,

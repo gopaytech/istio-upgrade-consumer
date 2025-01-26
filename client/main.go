@@ -13,18 +13,26 @@ import (
 )
 
 func main() {
-	ctx := cloudevents.ContextWithTarget(context.Background(), "http://localhost:8080/v1/upgrade")
+	settings, err := NewSettings()
+	if err != nil {
+		log.Fatalf("failed to load settings: %v", err)
+	}
+
+	url := settings.Host + "/v1/upgrade"
+	ctx := cloudevents.ContextWithTarget(context.Background(), url)
 
 	p, err := cloudevents.NewHTTP()
 	if err != nil {
 		log.Fatalf("failed to create protocol: %s", err.Error())
 	}
 
-	// Load the certificate
-	p.Client.Transport = &http.Transport{
-		TLSClientConfig: &tls.Config{
-			Certificates: []tls.Certificate{loadCertificate()},
-		},
+	if settings.ClientCertPath != "" && settings.ClientKeyPath != "" {
+		p.Client.Transport = &http.Transport{
+			TLSClientConfig: &tls.Config{
+				Certificates:       []tls.Certificate{loadCertificate(settings.ClientCertPath, settings.ClientKeyPath)},
+				InsecureSkipVerify: true,
+			},
+		}
 	}
 
 	c, err := cloudevents.NewClient(p, cloudevents.WithTimeNow(), cloudevents.WithUUIDs())
@@ -33,12 +41,15 @@ func main() {
 	}
 
 	data := &model.Upgrade{
-		IstioVersion: "1.22.4",
-		ClusterName:  "s-go-sy-primary-gke-01",
+		IstioVersion: settings.IstioVersion,
+		ClusterName:  settings.ClusterName,
 	}
+
 	e := cloudevents.NewEvent()
 	e.SetType("upgrade-event")
-	e.SetSource("testing-client")
+	e.SetSource(settings.EventSource)
+	e.SetSubject(settings.EventSubject)
+
 	_ = e.SetData(pbcloudevents.ContentTypeProtobuf, data)
 
 	res := c.Send(ctx, e)
@@ -54,8 +65,8 @@ func main() {
 	}
 }
 
-func loadCertificate() tls.Certificate {
-	cert, err := tls.LoadX509KeyPair("path/to/certificate.crt", "path/to/private.key")
+func loadCertificate(certPath, keyPath string) tls.Certificate {
+	cert, err := tls.LoadX509KeyPair(certPath, keyPath)
 	if err != nil {
 		log.Fatalf("failed to load certificate: %v", err)
 	}

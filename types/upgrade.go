@@ -17,4 +17,3 @@ func (u Upgrade) ToConfigMapData() map[string]string {
 		"rollout_restart_date": u.RolloutRestartDate,
 	}
 }
-
