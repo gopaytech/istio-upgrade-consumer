@@ -1,8 +1,9 @@
-name: "go: build client binary"
+name: "client-binary"
 
 on:
   push:
     tags: [ 'v*.*.*' ]
+  workflow_dispatch:
 
 permissions:
   contents: read
