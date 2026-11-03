@@ -1,7 +1,8 @@
 apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
+kind: Role
 metadata:
   name: {{ .Release.Name }}
+  namespace: {{ .Values.configuration.storageConfigMapNamespace }}
   labels:
     app.kubernetes.io/name: {{ .Release.Name }}
     helm.sh/chart: {{ template "istio-upgrade-consumer.chart" . }}
@@ -10,4 +11,9 @@ metadata:
 rules:
 - apiGroups: [""]
   resources: ["configmaps"]
-  verbs: ["*"]
+  resourceNames: ["{{ .Values.configuration.storageConfigMapName }}"]
+  verbs: ["get", "update"]
+# create cannot be restricted by resourceNames
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["create"]
