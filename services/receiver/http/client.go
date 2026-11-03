@@ -41,23 +41,32 @@ type UpgradeHTTP struct {
 }
 
 func (s UpgradeHTTP) Start() error {
-	ctx := context.Background()
-	protocol, err := cloudevents.NewHTTP()
+	server, err := s.Server()
 	if err != nil {
 		return err
+	}
+
+	return server.ListenAndServe()
+}
+
+// Server serves the CloudEvents receiver ourselves, because the SDK's own server has no body limit
+// and 600s timeouts. The SDK only uses WithPath to register its own mux, so the path lives on ours.
+func (s UpgradeHTTP) Server() (*nethttp.Server, error) {
+	protocol, err := cloudevents.NewHTTP()
+	if err != nil {
+		return nil, err
 	}
 
 	handler := NewUpgradeHandler(s.UpgradeImplementation)
-	receiver, err := cloudevents.NewHTTPReceiveHandler(ctx, protocol, handler.Handle)
+	receiver, err := cloudevents.NewHTTPReceiveHandler(context.Background(), protocol, handler.Handle)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	// the SDK's own server has no body limit and 600s timeouts, so serve the receiver ourselves
 	mux := nethttp.NewServeMux()
 	mux.Handle(upgradePath, nethttp.MaxBytesHandler(receiver, maxBodyBytes))
 
-	server := &nethttp.Server{
+	return &nethttp.Server{
 		Addr:              fmt.Sprintf(":%d", s.Settings.ReceiverHTTPPort),
 		Handler:           mux,
 		ReadHeaderTimeout: readHeaderTimeout,
@@ -65,7 +74,5 @@ func (s UpgradeHTTP) Start() error {
 		WriteTimeout:      writeTimeout,
 		IdleTimeout:       idleTimeout,
 		MaxHeaderBytes:    maxHeaderBytes,
-	}
-
-	return server.ListenAndServe()
+	}, nil
 }
