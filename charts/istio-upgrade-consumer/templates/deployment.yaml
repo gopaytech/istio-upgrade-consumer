@@ -19,6 +19,7 @@ spec:
         {{- include "istio-upgrade-consumer.podlabels" . | nindent 8 }}
     spec:
       serviceAccount: {{ .Release.Name }}
+      securityContext: {{ .Values.podSecurityContext | toYaml | nindent 8 }}
       containers:
       - image: "{{ .Values.deployment.image }}:{{ .Values.deployment.tag }}"
         name: istio-upgrade-consumer
@@ -26,5 +27,6 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ .Release.Name }}
+        securityContext: {{ .Values.securityContext | toYaml | nindent 10 }}
         resources: {{ .Values.resources | toYaml  | nindent 10 }}
 
